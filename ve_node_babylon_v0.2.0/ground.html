@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ground',{
+        category: 'Babylon JS',
+        color: '#C0DEED',
+        defaults: {
+            name: {value: ""},
+            height: {value: 0},
+            width: {value: 0},
+            friction: {value: 0}
+        },
+        outputs: 1,
+        icon: 'function.png',
+        label: function(){
+            return this.name || "Ground Name";
+        } 
+        });
+</script>
+
+<script type="text/x-red" data-template-name="ground">
+    <div class="form-row">
+        <label for="node-input-name">Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-height">Height</label>
+        <input type="text" id="node-input-height">
+    </div>
+    <div class="form-row">
+        <label for="node-input-width">Width</label>
+        <input type="text" id="node-input-width">
+    </div>
+    <div class="form-row">
+        <label for="node-input-friction">Friction</label>
+        <input type="text" id="node-input-friction">
+    </div>
+
+    <div class="form-tips"><b>Tip:</b> put full path with filename.</div>
+</script>

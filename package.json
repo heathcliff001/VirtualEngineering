@@ -1,0 +1,9 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-contrib-virtual-engineering-babylonjs": "file:ve_node_babylon_v0.2.0"
+    }
+}

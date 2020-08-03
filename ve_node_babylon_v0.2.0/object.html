@@ -1,0 +1,100 @@
+<script type="text/javascript">
+    RED.nodes.registerType('object',{
+        category: 'Babylon JS',
+        color: '#C0DEED',
+        defaults: {
+            name: {value: ""},
+            xPos: {value: 0},
+            yPos: {value: 1},
+            zPos: {value: 0},
+            scale: {value: 1},
+            mesh: {value: ""}
+        },
+        outputs: 1,
+        icon: 'function.png',
+        label: function(){
+            return this.name || "Object Name";
+        },
+        oneditprepare: function(){
+            config = this;
+            $.ajax({
+                url: "http://x1.hcm-lab.id:8888/virtual_engineering/object.php",
+                method: 'GET',
+                dataType: "json",
+                contentType: "application/json",
+                success:function(data){
+                    for(var i=0; i<data.length; i++){
+                        var dbVal = data[i];
+                        var newOpt = $('<option value="'+dbVal+'">'+dbVal+'</option>'); // Add all values to the dropdown list
+                        $("#node-input-name").append(newOpt);   
+                    }
+                }
+            });
+            $("#node-input-name").change(function(){
+                var nodeUrl = "http://x1.hcm-lab.id:8888/virtual_engineering/node.php?collection="+$(this).children("option:selected").val();
+                $.ajax({
+                url: nodeUrl,
+                method: 'GET',
+                dataType: "json",
+                contentType: "application/json",
+                success:function(data){
+                    console.log(data);
+                    var link = 'http://x1.hcm-lab.id:3000/'+data[0].path;   
+                    $.getJSON(link, function(value){
+                        for(var i in value.nodes){
+                            if(value.nodes[i].mesh != null){
+                                var meshName = value.nodes[i].name;
+                                meshName = meshName.replace(/\s/g, "_").toLowerCase();
+                                if(i == 0){
+                                    $("#node-input-mesh").remove();
+                                    $('.mesh').append('<select id="node-input-mesh">');
+                                    var newOpt = $('<option value="'+meshName+'">'+meshName+'</option>'); // Add all values to the dropdown list
+                                    $("#node-input-mesh").append(newOpt);   
+                                }else{
+                                    var newOpt = $('<option value="'+meshName+'">'+meshName+'</option>'); // Add all values to the dropdown list
+                                    $("#node-input-mesh").append(newOpt);   
+                                }
+                            }
+                        }
+                    })
+                }
+            });
+            })
+        }
+        });
+</script>
+
+<script type="text/x-red" data-template-name="object">
+    <div class="form-row">
+        <label for="node-input-name"> Object </label>
+        <select id="node-input-name">
+            <option value=""> </option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-scale">Scale</label>
+        <input type="text" id="node-input-scale">
+    </div>
+    <div class="form-row">
+        <label>Global Initial position</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-xPos">x</label>
+        <input type="text" id="node-input-xPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-yPos">y</label>
+        <input type="text" id="node-input-yPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-zPos">z</label>
+        <input type="text" id="node-input-zPos">
+    </div>
+    <div class="form-row mesh">
+        <label for="node-input-mesh"> mesh </label>
+        <select id="node-input-mesh">
+            <option value=""> </option>
+        </select>
+    </div>
+    <div class="form-tips"><b>Tip:</b> put full path with filename.</div>
+</script>

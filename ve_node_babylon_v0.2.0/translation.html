@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    RED.nodes.registerType('translation',{
+        category: 'Babylon JS',
+        color: '#e08719',
+        defaults: {
+            xSpeed: {value: 0},
+            ySpeed: {value: 0},
+            zSpeed: {value: 0},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'function.png',
+        label: 'Translation',
+        });
+</script>
+
+<script type="text/x-red" data-template-name="translation">
+
+    <div class="form-row">
+        <label>Speed</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-xSpeed">x</label>
+        <input type="text" id="node-input-xSpeed">
+    </div>
+    <div class="form-row">
+        <label for="node-input-ySpeed">y</label>
+        <input type="text" id="node-input-ySpeed">
+    </div>
+    <div class="form-row">
+        <label for="node-input-zSpeed">z</label>
+        <input type="text" id="node-input-zSpeed">
+    </div>
+</script>

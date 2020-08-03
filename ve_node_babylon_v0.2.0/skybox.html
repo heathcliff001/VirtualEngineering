@@ -1,0 +1,64 @@
+<script type="text/javascript">
+    RED.nodes.registerType('skybox',{
+        category: 'Babylon JS',
+        color: '#C0DEED',
+        defaults: {
+            name: {value: ""},
+            size: {value: 1000}
+        },
+        outputs: 1,
+        icon: 'function.png',
+        label: function(){
+            return this.name || "skybox Name";
+        },
+        oneditprepare: function(){
+            $.ajax({
+                url: "http://192.168.31.156/skybox.php",
+                method: 'GET',
+                dataType: "json",
+                contentType: "application/json",
+                success:function(data){
+                    for(var i=0; i<data.length; i++){
+                        var dbVal = data[i].skyboxName;
+                        var newOpt = $('<option value="'+dbVal+'">'+dbVal+'</option>'); // Add all values to the dropdown list
+                        $("#node-input-name").append(newOpt);
+                    }
+                }
+            });
+        }  
+        });
+</script>
+
+<script type="text/x-red" data-template-name="skybox">
+    <div class="form-row">
+        <label for="node-input-name"> Skybox </label>
+        <select id="node-input-name">
+            <option value=""> </option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-scale">Scale</label>
+        <input type="text" id="node-input-scale">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mass">Mass</label>
+        <input type="text" id="node-input-mass">
+    </div>
+    <div class="form-row">
+        <label>Initial position</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-xPos">x</label>
+        <input type="text" id="node-input-xPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-yPos">y</label>
+        <input type="text" id="node-input-yPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-zPos">z</label>
+        <input type="text" id="node-input-zPos">
+    </div>
+
+    <div class="form-tips"><b>Tip:</b> put full path with filename.</div>
+</script>

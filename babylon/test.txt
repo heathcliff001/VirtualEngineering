@@ -1,0 +1,2 @@
+ar  = BABYLON.MeshBuilder.CreateGround("",{height: 0, width: 0},scene);
+.physicsImpostor = new BABYLON.PhysicsImpostor(, BABYLON.PhysicsImpostor.BoxImpostor, {friction: 0}, scene);

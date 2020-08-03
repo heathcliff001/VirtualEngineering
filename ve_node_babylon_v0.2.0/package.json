@@ -1,0 +1,19 @@
+{    
+    "name" : "node-red-contrib-virtual-engineering-babylonjs",
+    "version": "0.2.0",
+    "node-red" : {
+        "nodes": {
+            "object": "object.js",
+            "translation": "translation.js",
+            "ground": "ground.js",
+            "rotation": "rotation.js",
+            "collisionStart": "collisionStart.js",
+            "collisionEnd": "collisionEnd.js",
+            "end": "end.js",
+            "assessment": "assessment.js"
+        }
+    },
+    "dependencies": {
+        "mongodb": "3.4.1"
+    }
+}

@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rotation',{
+        category: 'Babylon JS',
+        color: '#e08719',
+        defaults: {
+            xPos: {value: 0},
+            yPos: {value: 0},
+            zPos: {value: 0},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'function.png',
+        label: 'Rotation'
+        });
+</script>
+
+<script type="text/x-red" data-template-name="rotation">
+
+    <div class="form-row">
+        <label>Position</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-xPos">x</label>
+        <input type="text" id="node-input-xPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-yPos">y</label>
+        <input type="text" id="node-input-yPos">
+    </div>
+    <div class="form-row">
+        <label for="node-input-zPos">z</label>
+        <input type="text" id="node-input-zPos">
+    </div>
+</script>

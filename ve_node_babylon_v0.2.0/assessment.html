@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('assessment',{
+        category: 'Babylon JS',
+        color: '#FDF0C2',
+        defaults: {
+            question:{value:' '},
+            option: {value: []}
+        },
+        outputs: 1,
+        icon: 'function.png',
+        label: 'Assessment',
+        oneditsave: function(){
+            var config = this;
+            var opt = [];
+
+            opt.push($('#node-input-option').val());
+            opt.push($('#node-input-option1').val());
+            opt.push($('#node-input-option2').val());
+
+            config.option = opt;
+            
+        }
+        });
+</script>
+
+<script type="text/x-red" data-template-name="assessment">
+    <div class="form-row">
+        <label for="node-input-question">Question</label>
+        <input type="text" id="node-input-question">
+    </div>
+    <div class="form-row">
+        <label for="node-input-option">Option #1</label>
+        <input type="text" id="node-input-option">
+    </div>
+    <div class="form-row">
+        <label for="node-input-option1">Option #2</label>
+        <input type="text" id="node-input-option1">
+    </div>
+    <div class="form-row">
+        <label for="node-input-option2">Option #3</label>
+        <input type="text" id="node-input-option2">
+    </div>
+    <div class="form-tips"><b>Tip:</b> put full path with filename.</div>
+</script>
